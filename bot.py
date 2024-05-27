@@ -23,10 +23,10 @@ BUTTONS = bool(os.environ.get('BUTTONS', False)) # Upload mode. If True: will se
 # Buttons
 START_BUTTONS=[
     [
-        InlineKeyboardButton("Source", url="https://github.com/X-Gorn/BulkLoader"),
-        InlineKeyboardButton("LinkTree", url="https://xgorn.is-a.dev"),
+        InlineKeyboardButton("TRUMBOTS", url="https://github.com/X-Gorn/BulkLoader"),
+        InlineKeyboardButton("SOURCE", url="https://www.geeksforgeeks.org/python-programming-language-tutorial/"),
     ],
-    [InlineKeyboardButton("Author", url="https://t.me/xgorn")],
+    [InlineKeyboardButton("CREATOR", url="https://t.me/fligher")],
 ]
 
 CB_BUTTONS=[
