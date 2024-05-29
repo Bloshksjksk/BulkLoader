@@ -21,12 +21,20 @@ AS_ZIP = bool(os.environ.get('AS_ZIP', False)) # Upload method. If True: will Zi
 BUTTONS = bool(os.environ.get('BUTTONS', False)) # Upload mode. If True: will send buttons (Zip or One by One) instead of AZ_ZIP | If False: will do as you've fill on AZ_ZIP
 
 # Buttons
+inline_keyboard = InlineKeyboardMarkup(
+    [
+        # Create a list of InlineKeyboardButton objects
+        [
+            InlineKeyboardButton("Gᵢᵥₑ ₐ ₕₑₐᵣₜ💖",url="https://t.me/movie_time_botonly")
+        ]
+    ]
+)
 START_BUTTONS=[
     [
-        InlineKeyboardButton("𝙏𝙍𝙐𝙈𝘽𝙊𝙏𝙎", url="https://t.me/movie_time_botonly")
+        InlineKeyboardButton("🏆𝙏𝙍𝙐𝙈𝘽𝙊𝙏𝙎🏆", url="https://t.me/movie_time_botonly")
     
     ],
-    [InlineKeyboardButton("𝘾𝙍𝙀𝘼𝙏𝙊𝙍", url="https://t.me/fligher")],
+    [InlineKeyboardButton("☀️𝘾𝙍𝙀𝘼𝙏𝙊𝙍☀️", url="https://t.me/fligher")],
 ]
 
 CB_BUTTONS=[
@@ -133,7 +141,7 @@ async def send_media(file_name: str, update: Message) -> bool:
             caption = files
         else:
             caption = files.split('/')[-1]
-        progress_args = ('Uploading...', pablo, time.time())
+        progress_args = ('📥𝙐𝙥𝙡𝙤𝙖𝙙𝙞𝙣𝙜 𝙩𝙤 𝙔𝙤𝙪𝙧 𝙩𝙚𝙡𝙚𝙜𝙧𝙖𝙢 𝙘𝙝𝙖𝙩 𝙥𝙡𝙚𝙖𝙨𝙚 𝙬𝙖𝙞𝙩 𝘽𝙖𝙨𝙚𝙙 𝙤𝙣 𝙁𝙞𝙡𝙚 𝙎𝙞𝙯𝙚 𝙞𝙩 𝙬𝙞𝙡𝙡 𝙏𝙖𝙠𝙚 𝙎𝙤𝙢𝙚 𝙩𝙞𝙢𝙚...', pablo, time.time())
         if files.lower().endswith(('.mkv', '.mp4')):
             metadata = extractMetadata(createParser(files))
             duration = 0
@@ -146,18 +154,18 @@ async def send_media(file_name: str, update: Message) -> bool:
             os.remove('thumbnail.jpg')
         elif files.lower().endswith(('.jpg', '.jpeg', '.png')):
             try:
-                await update.reply_photo(files, caption=caption, progress=progress_for_pyrogram, progress_args=progress_args)
+                await update.reply_photo(files, caption=caption, progress=progress_for_pyrogram, progress_args=progress_args,reply_markup=inline_keyboard)
             except Exception as e:
                 print(e)
-                await update.reply_document(files, caption=caption, progress=progress_for_pyrogram, progress_args=progress_args)
+                await update.reply_document(files, caption=caption, progress=progress_for_pyrogram, progress_args=progress_args,reply_markup=inline_keyboard)
         elif files.lower().endswith(('.mp3')):
             try:
-                await update.reply_audio(files, caption=caption, progress=progress_for_pyrogram, progress_args=progress_args)
+                await update.reply_audio(files, caption=caption, progress=progress_for_pyrogram, progress_args=progress_args,reply_markup=inline_keyboard)
             except Exception as e:
                 print(e)
-                await update.reply_document(files, caption=caption, progress=progress_for_pyrogram, progress_args=progress_args)
+                await update.reply_document(files, caption=caption, progress=progress_for_pyrogram, progress_args=progress_args,reply_markup=inline_keyboard)
         else:
-            await update.reply_document(files, caption=caption, progress=progress_for_pyrogram, progress_args=progress_args)
+            await update.reply_document(files, caption=caption, progress=progress_for_pyrogram, progress_args=progress_args,reply_markup=inline_keyboard)
         return True
     else:
         return False
@@ -192,22 +200,22 @@ else:
     OWNER_FILTER = filters.incoming
 
 # Start message
-@xbot.on_message(filters.command('start') & OWNER_FILTER & filters.private)
+@xbot.on_message(filters.command('start') | OWNER_FILTER | filters.private)
 async def start(bot, update):
-    await update.reply_photo(photo="https://th.bing.com/th/id/OIG4.iV2l1_HaysKkHZXO8DlJ?pid=ImgGn",caption="I am BulkLoader\nYou can upload list of urls\n\n/help for more details!\n\n #𝙣𝙤𝙩𝙚: 𝙄 𝙖𝙢 𝙊𝙣𝙡𝙮 𝙎𝙪𝙥𝙥𝙤𝙧𝙩 2𝙂𝘽",reply_markup=InlineKeyboardMarkup(START_BUTTONS))
+    await update.reply_photo(photo="https://th.bing.com/th/id/OIG4.iV2l1_HaysKkHZXO8DlJ?pid=ImgGn",caption="𝙄 𝙖𝙢 𝘽𝙪𝙡𝙠𝙇𝙤𝙖𝙙𝙚𝙧\n𝙔𝙤𝙪 𝙘𝙖𝙣 𝙪𝙥𝙡𝙤𝙖𝙙 𝙡𝙞𝙨𝙩 𝙤𝙛 𝙪𝙧𝙡𝙨\n\n/help 𝙛𝙤𝙧 𝙢𝙤𝙧𝙚 𝙙𝙚𝙩𝙖𝙞𝙡𝙨!\n\n #𝙣𝙤𝙩𝙚: 𝙄 𝙖𝙢 𝙊𝙣𝙡𝙮 𝙎𝙪𝙥𝙥𝙤𝙧𝙩 2𝙂𝘽",reply_markup=InlineKeyboardMarkup(START_BUTTONS))
 
 
 # Helper msg
-@xbot.on_message(filters.command('help') & OWNER_FILTER & filters.private)
+@xbot.on_message(filters.command('help') | OWNER_FILTER | filters.private)
 async def help(bot, update):
-    await update.reply_photo(photo="https://th.bing.com/th/id/OIG4.iV2l1_HaysKkHZXO8DlJ?pid=ImgGn",caption="How to use BulkLoader?!\n\n2 Methods:\n- send command /link and then send urls, separated by new line.\n- send txt file (links), separated by new line.\n\n #𝙣𝙤𝙩𝙚: 𝙄 𝙖𝙢 𝙊𝙣𝙡𝙮 𝙎𝙪𝙥𝙥𝙤𝙧𝙩 2𝙂𝘽",reply_markup=InlineKeyboardMarkup(START_BUTTONS))
+    await update.reply_photo(photo="https://th.bing.com/th/id/OIG4.iV2l1_HaysKkHZXO8DlJ?pid=ImgGn",caption="𝙃𝙤𝙬 𝙩𝙤 𝙪𝙨𝙚 𝘽𝙪𝙡𝙠𝙇𝙤𝙖𝙙𝙚𝙧!\n\n2 𝙈𝙚𝙩𝙝𝙤𝙙𝙨:\n- 𝙨𝙚𝙣𝙙 𝙘𝙤𝙢𝙢𝙖𝙣𝙙 /link 𝙖𝙣𝙙 𝙩𝙝𝙚𝙣 𝙨𝙚𝙣𝙙 𝙪𝙧𝙡𝙨, 𝙨𝙚𝙥𝙖𝙧𝙖𝙩𝙚𝙙 𝙗𝙮 𝙣𝙚𝙬 𝙡𝙞𝙣𝙚.\n- 𝙨𝙚𝙣𝙙 𝙩𝙭𝙩 𝙛𝙞𝙡𝙚 (𝙡𝙞𝙣𝙠𝙨), 𝙨𝙚𝙥𝙖𝙧𝙖𝙩𝙚𝙙 𝙗𝙮 𝙣𝙚𝙬 𝙡𝙞𝙣𝙚.\n\n #𝙣𝙤𝙩𝙚: 𝙄 𝙖𝙢 𝙊𝙣𝙡𝙮 𝙎𝙪𝙥𝙥𝙤𝙧𝙩 2𝙂𝘽",reply_markup=InlineKeyboardMarkup(START_BUTTONS))
 
 
-@xbot.on_message(filters.command('link') & OWNER_FILTER & filters.private)
+@xbot.on_message(filters.command('link') | OWNER_FILTER | filters.private)
 async def linkloader(bot, update):
-    xlink = await update.chat.ask('Send your links, separated each link by new line', filters=filters.text, timeout=300)
+    xlink = await update.chat.ask('𝙎𝙚𝙣𝙙 𝙮𝙤𝙪𝙧 𝙡𝙞𝙣𝙠𝙨, 𝙨𝙚𝙥𝙖𝙧𝙖𝙩𝙚𝙙 𝙚𝙖𝙘𝙝 𝙡𝙞𝙣𝙠 𝙗𝙮 𝙣𝙚𝙬 𝙡𝙞𝙣𝙚', filters=filters.text, timeout=300)
     if BUTTONS == True:
-        return await xlink.reply('Uploading methods.', True, reply_markup=InlineKeyboardMarkup(CB_BUTTONS))
+        return await xlink.reply('𝙐𝙥𝙡𝙤𝙖𝙙𝙞𝙣𝙜 𝙢𝙚𝙩𝙝𝙤𝙙𝙨.🤖', True, reply_markup=InlineKeyboardMarkup(CB_BUTTONS))
     elif BUTTONS == False:
         pass
     dirs = f'downloads/{update.from_user.id}'
@@ -215,19 +223,19 @@ async def linkloader(bot, update):
         os.makedirs(dirs)
     output_filename = str(update.from_user.id)
     filename = f'{dirs}/{output_filename}.zip'
-    pablo = await update.reply_text('Downloading...')
+    pablo = await update.reply_text('📥𝑫𝒐𝒘𝒏𝒍𝒐𝒂𝒅𝒊𝒏𝒈 𝒕𝒐 𝒎𝒚 𝒔𝒆𝒓𝒗𝒆𝒓 𝒑𝒍𝒆𝒂𝒔𝒆 𝒘𝒂𝒊𝒕 𝑩𝒂𝒔𝒆𝒅 𝒐𝒏 𝑭𝒊𝒍𝒆 𝑺𝒊𝒛𝒆 𝒊𝒕 𝒘𝒊𝒍𝒍 𝑻𝒂𝒌𝒆 𝑺𝒐𝒎𝒆 𝒕𝒊𝒎𝒆...')
     urlx = xlink.text.split('\n')
     rm, total, up = len(urlx), len(urlx), 0
-    await pablo.edit_text(f"Total: {total}\nDownloaded: {up}\nDownloading: {rm}")
+    await pablo.edit_text(f"🌱Total: {total}\n🪴Downloading: {rm}\n🌳Downloaded: {up}")
     for url in urlx:
         await download_file(url, dirs)
         up+=1
         rm-=1
         try:
-            await pablo.edit_text(f"Total: {total}\nDownloaded: {up}\nDownloading: {rm}")
+            await pablo.edit_text(f"🌱Total: {total}\n🪴Downloading: {rm}\n🌳Downloaded: {up}")
         except BadRequest:
             pass
-    await pablo.edit_text('Uploading...')
+    await pablo.edit_text('📥𝙐𝙥𝙡𝙤𝙖𝙙𝙞𝙣𝙜 𝙩𝙤 𝙔𝙤𝙪𝙧 𝙩𝙚𝙡𝙚𝙜𝙧𝙖𝙢 𝙘𝙝𝙖𝙩 𝙥𝙡𝙚𝙖𝙨𝙚 𝙬𝙖𝙞𝙩 𝘽𝙖𝙨𝙚𝙙 𝙤𝙣 𝙁𝙞𝙡𝙚 𝙎𝙞𝙯𝙚 𝙞𝙩 𝙬𝙞𝙡𝙡 𝙏𝙖𝙠𝙚 𝙎𝙤𝙢𝙚 𝙩𝙞𝙢𝙚...')
     if AS_ZIP == True:
         shutil.make_archive(output_filename, 'zip', dirs)
         start_time = time.time()
@@ -235,7 +243,7 @@ async def linkloader(bot, update):
             filename,
             progress=progress_for_pyrogram,
             progress_args=(
-                'Uploading...',
+                '📥𝙐𝙥𝙡𝙤𝙖𝙙𝙞𝙣𝙜 𝙩𝙤 𝙔𝙤𝙪𝙧 𝙩𝙚𝙡𝙚𝙜𝙧𝙖𝙢 𝙘𝙝𝙖𝙩 𝙥𝙡𝙚𝙖𝙨𝙚 𝙬𝙖𝙞𝙩 𝘽𝙖𝙨𝙚𝙙 𝙤𝙣 𝙁𝙞𝙡𝙚 𝙎𝙞𝙯𝙚 𝙞𝙩 𝙬𝙞𝙡𝙡 𝙏𝙖𝙠𝙚 𝙎𝙤𝙢𝙚 𝙩𝙞𝙢𝙚...',
                 pablo,
                 start_time
             )
@@ -246,13 +254,13 @@ async def linkloader(bot, update):
     elif AS_ZIP == False:
         dldirs = [i async for i in absolute_paths(dirs)]
         rm, total, up = len(dldirs), len(dldirs), 0
-        await pablo.edit_text(f"Total: {total}\nUploaded: {up}\nUploading: {rm}")
+        await pablo.edit_text(f"🌱Total: {total}\n🪴Downloading: {rm}\n🌳Downloaded: {up}")
         for files in dldirs:
             await send_media(files, pablo)
             up+=1
             rm-=1
             try:
-                await pablo.edit_text(f"Total: {total}\nUploaded: {up}\nUploading: {rm}")
+                await pablo.edit_text(f"🌱Total: {total}\n🪴Downloading: {rm}\n🌳Downloaded: {up}")
             except BadRequest:
                 pass
             time.sleep(1)
@@ -263,7 +271,7 @@ async def linkloader(bot, update):
 @xbot.on_message(filters.document & OWNER_FILTER & filters.private)
 async def loader(bot, update):
     if BUTTONS == True:
-        return await update.reply('You wanna upload files as?', True, reply_markup=InlineKeyboardMarkup(CB_BUTTONS))
+        return await update.reply('𝙔𝙤𝙪 𝙬𝙖𝙣𝙣𝙖 𝙪𝙥𝙡𝙤𝙖𝙙 𝙛𝙞𝙡𝙚𝙨 𝙖𝙨?', True, reply_markup=InlineKeyboardMarkup(CB_BUTTONS))
     elif BUTTONS == False:
         pass
     dirs = f'downloads/{update.from_user.id}'
@@ -273,22 +281,22 @@ async def loader(bot, update):
         return
     output_filename = update.document.file_name[:-4]
     filename = f'{dirs}/{output_filename}.zip'
-    pablo = await update.reply_text('Downloading...')
+    pablo = await update.reply_text('📥𝑫𝒐𝒘𝒏𝒍𝒐𝒂𝒅𝒊𝒏𝒈 𝒕𝒐 𝒎𝒚 𝒔𝒆𝒓𝒗𝒆𝒓 𝒑𝒍𝒆𝒂𝒔𝒆 𝒘𝒂𝒊𝒕 𝑩𝒂𝒔𝒆𝒅 𝒐𝒏 𝑭𝒊𝒍𝒆 𝑺𝒊𝒛𝒆 𝒊𝒕 𝒘𝒊𝒍𝒍 𝑻𝒂𝒌𝒆 𝑺𝒐𝒎𝒆 𝒕𝒊𝒎𝒆...')
     fl = await update.download()
     with open(fl) as f:
         urls = f.read()
         urlx = urls.split('\n')
         rm, total, up = len(urlx), len(urlx), 0
-        await pablo.edit_text(f"Total: {total}\nDownloaded: {up}\nDownloading: {rm}")
+        await pablo.edit_text(f"🌱Total: {total}\n🪴Downloading: {rm}\n🌳Downloaded: {up}")
         for url in urlx:
             await download_file(url, dirs)
             up+=1
             rm-=1
             try:
-                await pablo.edit_text(f"Total: {total}\nDownloaded: {up}\nDownloading: {rm}")
+                await pablo.edit_text(f"🌱Total: {total}\n🪴Downloading: {rm}\n🌳Downloaded: {up}")
             except BadRequest:
                 pass
-    await pablo.edit_text('Uploading...')
+    await pablo.edit_text('📥𝙐𝙥𝙡𝙤𝙖𝙙𝙞𝙣𝙜 𝙩𝙤 𝙔𝙤𝙪𝙧 𝙩𝙚𝙡𝙚𝙜𝙧𝙖𝙢 𝙘𝙝𝙖𝙩 𝙥𝙡𝙚𝙖𝙨𝙚 𝙬𝙖𝙞𝙩 𝘽𝙖𝙨𝙚𝙙 𝙤𝙣 𝙁𝙞𝙡𝙚 𝙎𝙞𝙯𝙚 𝙞𝙩 𝙬𝙞𝙡𝙡 𝙏𝙖𝙠𝙚 𝙎𝙤𝙢𝙚 𝙩𝙞𝙢𝙚...')
     os.remove(fl)
     if AS_ZIP == True:
         shutil.make_archive(output_filename, 'zip', dirs)
@@ -297,7 +305,7 @@ async def loader(bot, update):
             filename,
             progress=progress_for_pyrogram,
             progress_args=(
-                'Uploading...',
+                '📥𝙐𝙥𝙡𝙤𝙖𝙙𝙞𝙣𝙜 𝙩𝙤 𝙔𝙤𝙪𝙧 𝙩𝙚𝙡𝙚𝙜𝙧𝙖𝙢 𝙘𝙝𝙖𝙩 𝙥𝙡𝙚𝙖𝙨𝙚 𝙬𝙖𝙞𝙩 𝘽𝙖𝙨𝙚𝙙 𝙤𝙣 𝙁𝙞𝙡𝙚 𝙎𝙞𝙯𝙚 𝙞𝙩 𝙬𝙞𝙡𝙡 𝙏𝙖𝙠𝙚 𝙎𝙤𝙢𝙚 𝙩𝙞𝙢𝙚...',
                 pablo,
                 start_time
             )
@@ -308,13 +316,13 @@ async def loader(bot, update):
     elif AS_ZIP == False:
         dldirs = [i async for i in absolute_paths(dirs)]
         rm, total, up = len(dldirs), len(dldirs), 0
-        await pablo.edit_text(f"Total: {total}\nUploaded: {up}\nUploading: {rm}")
+        await pablo.edit_text(f"🌱Total: {total}\n🪴Downloading: {rm}\n🌳Downloaded: {up}")
         for files in dldirs:
             await send_media(files, pablo)
             up+=1
             rm-=1
             try:
-                await pablo.edit_text(f"Total: {total}\nUploaded: {up}\nUploading: {rm}")
+                await pablo.edit_text(f"🌱Total: {total}\n🪴Downloading: {rm}\n🌳Downloaded: {up}")
             except BadRequest:
                 pass
             time.sleep(1)
@@ -333,38 +341,38 @@ async def callbacks(bot: Client, updatex: CallbackQuery):
     if update.document:
         output_filename = update.document.file_name[:-4]
         filename = f'{dirs}/{output_filename}.zip'
-        pablo = await update.reply_text('Downloading...')
+        pablo = await update.reply_text('📥𝑫𝒐𝒘𝒏𝒍𝒐𝒂𝒅𝒊𝒏𝒈 𝒕𝒐 𝒎𝒚 𝒔𝒆𝒓𝒗𝒆𝒓 𝒑𝒍𝒆𝒂𝒔𝒆 𝒘𝒂𝒊𝒕 𝑩𝒂𝒔𝒆𝒅 𝒐𝒏 𝑭𝒊𝒍𝒆 𝑺𝒊𝒛𝒆 𝒊𝒕 𝒘𝒊𝒍𝒍 𝑻𝒂𝒌𝒆 𝑺𝒐𝒎𝒆 𝒕𝒊𝒎𝒆...')
         fl = await update.download()
         with open(fl) as f:
             urls = f.read()
             urlx = urls.split('\n')
             rm, total, up = len(urlx), len(urlx), 0
-            await pablo.edit_text(f"Total: {total}\nDownloaded: {up}\nDownloading: {rm}")
+            await pablo.edit_text(f"🌱Total: {total}\n🪴Downloading: {rm}\n🌳Downloaded: {up}")
             for url in urlx:
                 await download_file(url, dirs)
                 up+=1
                 rm-=1
                 try:
-                    await pablo.edit_text(f"Total: {total}\nDownloaded: {up}\nDownloading: {rm}")
+                    await pablo.edit_text(f"🌱Total: {total}\n🪴Downloading: {rm}\n🌳Downloaded: {up}")
                 except BadRequest:
                     pass
         os.remove(fl)
     elif update.text:
         output_filename = str(update.from_user.id)
         filename = f'{dirs}/{output_filename}.zip'
-        pablo = await update.reply_text('Downloading...')
+        pablo = await update.reply_text(📥Downloading to my server please wait Based on File Size it will Take Some time...)
         urlx = update.text.split('\n')
         rm, total, up = len(urlx), len(urlx), 0
-        await pablo.edit_text(f"Total: {total}\nDownloaded: {up}\nDownloading: {rm}")
+        await pablo.edit_text(f"🌱Total: {total}\n🪴Downloading: {rm}\n🌳Downloaded: {up}")
         for url in urlx:
             await download_file(url, dirs)
             up+=1
             rm-=1
             try:
-                await pablo.edit_text(f"Total: {total}\nDownloaded: {up}\nDownloading: {rm}")
+                await pablo.edit_text(f"🌱Total: {total}\n🪴Downloading: {rm}\n🌳Downloaded: {up}")
             except BadRequest:
                 pass
-    await pablo.edit_text('Uploading...')
+    await pablo.edit_text('📥𝙐𝙥𝙡𝙤𝙖𝙙𝙞𝙣𝙜 𝙩𝙤 𝙔𝙤𝙪𝙧 𝙩𝙚𝙡𝙚𝙜𝙧𝙖𝙢 𝙘𝙝𝙖𝙩 𝙥𝙡𝙚𝙖𝙨𝙚 𝙬𝙖𝙞𝙩 𝘽𝙖𝙨𝙚𝙙 𝙤𝙣 𝙁𝙞𝙡𝙚 𝙎𝙞𝙯𝙚 𝙞𝙩 𝙬𝙞𝙡𝙡 𝙏𝙖𝙠𝙚 𝙎𝙤𝙢𝙚 𝙩𝙞𝙢𝙚...')
     if cb_data == 'zip':
         shutil.make_archive(output_filename, 'zip', dirs)
         start_time = time.time()
@@ -372,7 +380,7 @@ async def callbacks(bot: Client, updatex: CallbackQuery):
             filename,
             progress=progress_for_pyrogram,
             progress_args=(
-                'Uploading...',
+                '📥𝙐𝙥𝙡𝙤𝙖𝙙𝙞𝙣𝙜 𝙩𝙤 𝙔𝙤𝙪𝙧 𝙩𝙚𝙡𝙚𝙜𝙧𝙖𝙢 𝙘𝙝𝙖𝙩 𝙥𝙡𝙚𝙖𝙨𝙚 𝙬𝙖𝙞𝙩 𝘽𝙖𝙨𝙚𝙙 𝙤𝙣 𝙁𝙞𝙡𝙚 𝙎𝙞𝙯𝙚 𝙞𝙩 𝙬𝙞𝙡𝙡 𝙏𝙖𝙠𝙚 𝙎𝙤𝙢𝙚 𝙩𝙞𝙢𝙚...',
                 pablo,
                 start_time
             )
@@ -383,13 +391,13 @@ async def callbacks(bot: Client, updatex: CallbackQuery):
     elif cb_data == '1by1':
         dldirs = [i async for i in absolute_paths(dirs)]
         rm, total, up = len(dldirs), len(dldirs), 0
-        await pablo.edit_text(f"Total: {total}\nUploaded: {up}\nUploading: {rm}")
+        await pablo.edit_text(f"🌱Total: {total}\n🪴Downloading: {rm}\n🌳Downloaded: {up}")
         for files in dldirs:
             await send_media(files, pablo)
             up+=1
             rm-=1
             try:
-                await pablo.edit_text(f"Total: {total}\nUploaded: {up}\nUploading: {rm}")
+                await pablo.edit_text(f"🌱Total: {total}\n🪴Downloading: {rm}\n🌳Downloaded: {up}")
             except BadRequest:
                 pass
             time.sleep(1)
