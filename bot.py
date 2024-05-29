@@ -194,7 +194,7 @@ else:
 # Start message
 @xbot.on_message(filters.command('start') & OWNER_FILTER & filters.private)
 async def start(bot, update):
-    await update.reply_photo(photo="https://th.bing.com/th/id/OIG4.iV2l1_HaysKkHZXO8DlJ?pid=ImgGn",caption="I'm BulkLoader\nYou can upload list of urls\n\n/help for more details!", True, reply_markup=InlineKeyboardMarkup(START_BUTTONS))
+    await update.reply_photo(photo="https://th.bing.com/th/id/OIG4.iV2l1_HaysKkHZXO8DlJ?pid=ImgGn",caption="I am BulkLoader\nYou can upload list of urls\n\n/help for more details!", True, reply_markup=InlineKeyboardMarkup(START_BUTTONS))
 
 
 # Helper msg
