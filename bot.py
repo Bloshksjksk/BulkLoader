@@ -21,6 +21,7 @@ AS_ZIP = bool(os.environ.get('AS_ZIP', False)) # Upload method. If True: will Zi
 BUTTONS = bool(os.environ.get('BUTTONS', False)) # Upload mode. If True: will send buttons (Zip or One by One) instead of AZ_ZIP | If False: will do as you've fill on AZ_ZIP
 
 # Buttons
+done_text = "Your Task has Been Done."
 inline_keyboard = InlineKeyboardMarkup(
     [
         # Create a list of InlineKeyboardButton objects
@@ -151,7 +152,7 @@ async def send_media(file_name: str, update: Message) -> bool:
             rndmtime = str(random.randint(0, duration))
             await run_cmd(f'ffmpeg -ss {rndmtime} -i "{files}" -vframes 1 thumbnail.jpg')
             await update.reply_video(files, caption=caption, duration=duration, thumb='thumbnail.jpg', progress=progress_for_pyrogram, progress_args=progress_args)
-            os.remove('thumbnail.jpg')
+            # os.remove('thumbnail.jpg')
         elif files.lower().endswith(('.jpg', '.jpeg', '.png')):
             try:
                 await update.reply_photo(files, caption=caption, progress=progress_for_pyrogram, progress_args=progress_args,reply_markup=inline_keyboard)
@@ -383,8 +384,9 @@ async def callbacks(bot: Client, updatex: CallbackQuery):
                 '📥𝙐𝙥𝙡𝙤𝙖𝙙𝙞𝙣𝙜 𝙩𝙤 𝙔𝙤𝙪𝙧 𝙩𝙚𝙡𝙚𝙜𝙧𝙖𝙢 𝙘𝙝𝙖𝙩 𝙥𝙡𝙚𝙖𝙨𝙚 𝙬𝙖𝙞𝙩 𝘽𝙖𝙨𝙚𝙙 𝙤𝙣 𝙁𝙞𝙡𝙚 𝙎𝙞𝙯𝙚 𝙞𝙩 𝙬𝙞𝙡𝙡 𝙏𝙖𝙠𝙚 𝙎𝙤𝙢𝙚 𝙩𝙞𝙢𝙚...',
                 pablo,
                 start_time
-            )
+            ), reply_markup=inline_keyboard
         )
+        await update.reply_text(message_text)
         await pablo.delete()
         os.remove(filename)
         shutil.rmtree(dirs)
@@ -393,7 +395,8 @@ async def callbacks(bot: Client, updatex: CallbackQuery):
         rm, total, up = len(dldirs), len(dldirs), 0
         await pablo.edit_text(f"🌱Total: {total}\n🪴Downloading: {rm}\n🌳Downloaded: {up}")
         for files in dldirs:
-            await send_media(files, pablo)
+            await send_media(files, pablo,reply_markup=inline_keyboard)
+            await update.reply_text(message_text)
             up+=1
             rm-=1
             try:
