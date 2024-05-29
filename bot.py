@@ -23,16 +23,16 @@ BUTTONS = bool(os.environ.get('BUTTONS', False)) # Upload mode. If True: will se
 # Buttons
 START_BUTTONS=[
     [
-        InlineKeyboardButton("TRUMBOTS", url="https://github.com/X-Gorn/BulkLoader"),
-        InlineKeyboardButton("SOURCE", url="https://www.geeksforgeeks.org/python-programming-language-tutorial/"),
+        InlineKeyboardButton("𝙏𝙍𝙐𝙈𝘽𝙊𝙏𝙎", url="https://t.me/movie_time_botonly")
+    
     ],
-    [InlineKeyboardButton("CREATOR", url="https://t.me/fligher")],
+    [InlineKeyboardButton("𝘾𝙍𝙀𝘼𝙏𝙊𝙍", url="https://t.me/fligher")],
 ]
 
 CB_BUTTONS=[
     [
-        InlineKeyboardButton("Zip", callback_data="zip"),
-        InlineKeyboardButton("One by one", callback_data="1by1"),
+        InlineKeyboardButton("𝐙𝐢𝐩🗜️", callback_data="zip"),
+        InlineKeyboardButton("𝐎𝐧𝐞 𝐛𝐲 𝐨𝐧𝐞📃", callback_data="1by1"),
     ]
 ]
 
@@ -194,13 +194,13 @@ else:
 # Start message
 @xbot.on_message(filters.command('start') & OWNER_FILTER & filters.private)
 async def start(bot, update):
-    await update.reply_text(f"I'm BulkLoader\nYou can upload list of urls\n\n/help for more details!", True, reply_markup=InlineKeyboardMarkup(START_BUTTONS))
+    await update.reply_photo(photo="https://th.bing.com/th/id/OIG4.iV2l1_HaysKkHZXO8DlJ?pid=ImgGn",caption="I'm BulkLoader\nYou can upload list of urls\n\n/help for more details!", True, reply_markup=InlineKeyboardMarkup(START_BUTTONS))
 
 
 # Helper msg
 @xbot.on_message(filters.command('help') & OWNER_FILTER & filters.private)
 async def help(bot, update):
-    await update.reply_text(f"How to use BulkLoader?!\n\n2 Methods:\n- send command /link and then send urls, separated by new line.\n- send txt file (links), separated by new line.", True, reply_markup=InlineKeyboardMarkup(START_BUTTONS))
+    await update.reply_photo(photo="https://th.bing.com/th/id/OIG4.iV2l1_HaysKkHZXO8DlJ?pid=ImgGn",caption="How to use BulkLoader?!\n\n2 Methods:\n- send command /link and then send urls, separated by new line.\n- send txt file (links), separated by new line.", True, reply_markup=InlineKeyboardMarkup(START_BUTTONS))
 
 
 @xbot.on_message(filters.command('link') & OWNER_FILTER & filters.private)
