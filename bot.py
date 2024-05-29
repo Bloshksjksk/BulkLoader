@@ -360,7 +360,7 @@ async def callbacks(bot: Client, updatex: CallbackQuery):
     elif update.text:
         output_filename = str(update.from_user.id)
         filename = f'{dirs}/{output_filename}.zip'
-        pablo = await update.reply_text(📥Downloading to my server please wait Based on File Size it will Take Some time...')
+        pablo = await update.reply_text('📥Downloading to my server please wait Based on File Size it will Take Some time...')
         urlx = update.text.split('\n')
         rm, total, up = len(urlx), len(urlx), 0
         await pablo.edit_text(f"🌱Total: {total}\n🪴Downloading: {rm}\n🌳Downloaded: {up}")
