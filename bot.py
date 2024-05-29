@@ -395,8 +395,8 @@ async def callbacks(bot: Client, updatex: CallbackQuery):
         rm, total, up = len(dldirs), len(dldirs), 0
         await pablo.edit_text(f"🌱Total: {total}\n🪴Downloading: {rm}\n🌳Downloaded: {up}")
         for files in dldirs:
-            await send_media(files, pablo,reply_markup=inline_keyboard)
-            await update.reply_text(message_text)
+            await send_media(files, pablo)
+            await update.reply_text(message_text,reply_markup=inline_keyboard)
             up+=1
             rm-=1
             try:
