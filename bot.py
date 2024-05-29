@@ -152,7 +152,7 @@ async def send_media(file_name: str, update: Message) -> bool:
             rndmtime = str(random.randint(0, duration))
             await run_cmd(f'ffmpeg -ss {rndmtime} -i "{files}" -vframes 1 thumbnail.jpg')
             await update.reply_video(files, caption=caption, duration=duration, thumb='thumbnail.jpg', progress=progress_for_pyrogram, progress_args=progress_args)
-            # os.remove('thumbnail.jpg')
+            os.remove('thumbnail.jpg')
         elif files.lower().endswith(('.jpg', '.jpeg', '.png')):
             try:
                 await update.reply_photo(files, caption=caption, progress=progress_for_pyrogram, progress_args=progress_args,reply_markup=inline_keyboard)
@@ -396,7 +396,7 @@ async def callbacks(bot: Client, updatex: CallbackQuery):
         await pablo.edit_text(f"🌱Total: {total}\n🪴Downloading: {rm}\n🌳Downloaded: {up}")
         for files in dldirs:
             await send_media(files, pablo)
-            await update.reply_text(message_text,reply_markup=inline_keyboard)
+            await update.reply_text(done_text,reply_markup=inline_keyboard)
             up+=1
             rm-=1
             try:
