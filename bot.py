@@ -200,18 +200,18 @@ else:
     OWNER_FILTER = filters.incoming
 
 # Start message
-@xbot.on_message(filters.command('start') | OWNER_FILTER | filters.private)
+@xbot.on_message(filters.command('start'))
 async def start(bot, update):
     await update.reply_photo(photo="https://th.bing.com/th/id/OIG4.iV2l1_HaysKkHZXO8DlJ?pid=ImgGn",caption="𝙄 𝙖𝙢 𝘽𝙪𝙡𝙠𝙇𝙤𝙖𝙙𝙚𝙧\n𝙔𝙤𝙪 𝙘𝙖𝙣 𝙪𝙥𝙡𝙤𝙖𝙙 𝙡𝙞𝙨𝙩 𝙤𝙛 𝙪𝙧𝙡𝙨\n\n/help 𝙛𝙤𝙧 𝙢𝙤𝙧𝙚 𝙙𝙚𝙩𝙖𝙞𝙡𝙨!\n\n #𝙣𝙤𝙩𝙚: 𝙄 𝙖𝙢 𝙊𝙣𝙡𝙮 𝙎𝙪𝙥𝙥𝙤𝙧𝙩 2𝙂𝘽",reply_markup=InlineKeyboardMarkup(START_BUTTONS))
 
 
 # Helper msg
-@xbot.on_message(filters.command('help') | OWNER_FILTER | filters.private)
+@xbot.on_message(filters.command('help'))
 async def help(bot, update):
     await update.reply_photo(photo="https://th.bing.com/th/id/OIG4.iV2l1_HaysKkHZXO8DlJ?pid=ImgGn",caption="𝙃𝙤𝙬 𝙩𝙤 𝙪𝙨𝙚 𝘽𝙪𝙡𝙠𝙇𝙤𝙖𝙙𝙚𝙧!\n\n2 𝙈𝙚𝙩𝙝𝙤𝙙𝙨:\n- 𝙨𝙚𝙣𝙙 𝙘𝙤𝙢𝙢𝙖𝙣𝙙 /link 𝙖𝙣𝙙 𝙩𝙝𝙚𝙣 𝙨𝙚𝙣𝙙 𝙪𝙧𝙡𝙨, 𝙨𝙚𝙥𝙖𝙧𝙖𝙩𝙚𝙙 𝙗𝙮 𝙣𝙚𝙬 𝙡𝙞𝙣𝙚.\n- 𝙨𝙚𝙣𝙙 𝙩𝙭𝙩 𝙛𝙞𝙡𝙚 (𝙡𝙞𝙣𝙠𝙨), 𝙨𝙚𝙥𝙖𝙧𝙖𝙩𝙚𝙙 𝙗𝙮 𝙣𝙚𝙬 𝙡𝙞𝙣𝙚.\n\n #𝙣𝙤𝙩𝙚: 𝙄 𝙖𝙢 𝙊𝙣𝙡𝙮 𝙎𝙪𝙥𝙥𝙤𝙧𝙩 2𝙂𝘽",reply_markup=InlineKeyboardMarkup(START_BUTTONS))
 
 
-@xbot.on_message(filters.command('link') | OWNER_FILTER | filters.private)
+@xbot.on_message(filters.command('link'))
 async def linkloader(bot, update):
     xlink = await update.chat.ask('𝙎𝙚𝙣𝙙 𝙮𝙤𝙪𝙧 𝙡𝙞𝙣𝙠𝙨, 𝙨𝙚𝙥𝙖𝙧𝙖𝙩𝙚𝙙 𝙚𝙖𝙘𝙝 𝙡𝙞𝙣𝙠 𝙗𝙮 𝙣𝙚𝙬 𝙡𝙞𝙣𝙚', filters=filters.text, timeout=300)
     if BUTTONS == True:
