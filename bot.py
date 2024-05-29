@@ -194,13 +194,13 @@ else:
 # Start message
 @xbot.on_message(filters.command('start') & OWNER_FILTER & filters.private)
 async def start(bot, update):
-    await update.reply_photo(photo="https://th.bing.com/th/id/OIG4.iV2l1_HaysKkHZXO8DlJ?pid=ImgGn",caption="I am BulkLoader\nYou can upload list of urls\n\n/help for more details!", True, reply_markup=InlineKeyboardMarkup(START_BUTTONS))
+    await update.reply_photo(photo="https://th.bing.com/th/id/OIG4.iV2l1_HaysKkHZXO8DlJ?pid=ImgGn",caption="I am BulkLoader\nYou can upload list of urls\n\n/help for more details!",reply_markup=InlineKeyboardMarkup(START_BUTTONS))
 
 
 # Helper msg
 @xbot.on_message(filters.command('help') & OWNER_FILTER & filters.private)
 async def help(bot, update):
-    await update.reply_photo(photo="https://th.bing.com/th/id/OIG4.iV2l1_HaysKkHZXO8DlJ?pid=ImgGn",caption="How to use BulkLoader?!\n\n2 Methods:\n- send command /link and then send urls, separated by new line.\n- send txt file (links), separated by new line.", True, reply_markup=InlineKeyboardMarkup(START_BUTTONS))
+    await update.reply_photo(photo="https://th.bing.com/th/id/OIG4.iV2l1_HaysKkHZXO8DlJ?pid=ImgGn",caption="How to use BulkLoader?!\n\n2 Methods:\n- send command /link and then send urls, separated by new line.\n- send txt file (links), separated by new line.",reply_markup=InlineKeyboardMarkup(START_BUTTONS))
 
 
 @xbot.on_message(filters.command('link') & OWNER_FILTER & filters.private)
