@@ -152,7 +152,7 @@ async def send_media(file_name: str, update: Message) -> bool:
             rndmtime = str(random.randint(0, duration))
             await run_cmd(f'ffmpeg -ss {rndmtime} -i "{files}" -vframes 1 thumbnail.jpg')
             await update.reply_video(files, caption=caption, duration=duration, thumb='thumbnail.jpg', progress=progress_for_pyrogram, progress_args=progress_args)
-            os.remove('thumbnail.jpg')
+            #os.remove('thumbnail.jpg')
         elif files.lower().endswith(('.jpg', '.jpeg', '.png')):
             try:
                 await update.reply_photo(files, caption=caption, progress=progress_for_pyrogram, progress_args=progress_args,reply_markup=inline_keyboard)
